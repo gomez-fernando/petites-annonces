@@ -60,6 +60,11 @@ class Annonce
      */
     private $category;
 
+    public function __construct()
+    {
+      $this->active = false;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

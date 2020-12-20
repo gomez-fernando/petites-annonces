@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Annonce;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,13 +16,11 @@ class AnnonceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('slug')
-            ->add('content')
-            ->add('createdAt')
-            ->add('active')
-            ->add('user')
-            ->add('category')
+            ->add('title', TextType::class)
+            ->add('content', TextareaType::class)
+            ->add('category', EntityType::class, [
+                'class' => Category::class
+            ])
         ;
     }
 

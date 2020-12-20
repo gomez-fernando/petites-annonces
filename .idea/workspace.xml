@@ -10,7 +10,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ffa5e95-6a76-4b2a-aba5-63f01db66b67" name="Default Changelist" comment="" />
+    <list default="true" id="2ffa5e95-6a76-4b2a-aba5-63f01db66b67" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserConstrollerController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Annonce.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Annonce.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/AnnonceType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AnnonceType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CategoryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CategoryType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/category/add.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/category/add.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_constroller/index.html.twig" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,6 +162,11 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/user/annonces" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -167,7 +183,7 @@
       <workItem from="1608415215126" duration="1026000" />
       <workItem from="1608416841771" duration="387000" />
       <workItem from="1608417274539" duration="588000" />
-      <workItem from="1608470679905" duration="3262000" />
+      <workItem from="1608470679905" duration="7026000" />
     </task>
     <servers />
   </component>
@@ -185,27 +201,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="371" y="121" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1608416979940">
-      <screen x="0" y="0" width="1366" height="768" />
-    </state>
-    <state x="371" y="121" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1608416979940" />
-    <state x="325" y="68" width="684" height="446" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608329291863">
-      <screen x="0" y="0" width="3286" height="1080" />
-    </state>
-    <state x="325" y="68" width="684" height="446" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.3286.1080@0.0.3286.1080" timestamp="1608329291863" />
-    <state x="427" y="225" width="502" height="316" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1608327984862">
-      <screen x="0" y="0" width="3286" height="1080" />
-    </state>
-    <state x="427" y="225" width="502" height="316" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.3286.1080@0.0.3286.1080" timestamp="1608327984862" />
-    <state x="387" y="104" width="783" height="540" key="find.popup" timestamp="1607986138689">
-      <screen x="0" y="0" width="3286" height="1080" />
-    </state>
-    <state x="387" y="104" width="783" height="540" key="find.popup/0.0.3286.1080@0.0.3286.1080" timestamp="1607986138689" />
-    <state x="413" y="279" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1607965566839">
-      <screen x="0" y="0" width="3286" height="1080" />
-    </state>
-    <state x="413" y="279" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.3286.1080@0.0.3286.1080" timestamp="1607965566839" />
   </component>
 </project>

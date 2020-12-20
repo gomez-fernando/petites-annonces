@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Annonce;
 use App\Entity\Category;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -17,7 +18,7 @@ class AnnonceType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
-            ->add('content', TextareaType::class)
+            ->add('content', CKEditorType::class)
             ->add('category', EntityType::class, [
                 'class' => Category::class
             ])

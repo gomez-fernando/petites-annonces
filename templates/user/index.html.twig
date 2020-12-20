@@ -1,8 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'user.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}My profile{% endblock %}
 
 {% block body %}
-  <h1>user controller</h1>
-
+<div class="grix xs2">
+  <div>Name: </div>
+  <div>{{ app.user.name }}</div>
+  <div>Lastname: </div>
+  <div>{{ app.user.lastname }}</div>
+  <div>Email: </div>
+  <div>{{ app.user.email }}</div>
+</div>
 {% endblock %}

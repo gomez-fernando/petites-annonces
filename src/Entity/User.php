@@ -45,7 +45,7 @@ class User implements UserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonces::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user", orphanRemoval=true)
      */
     private $annonces;
 
@@ -145,14 +145,14 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Annonces[]
+     * @return Collection|Annonce[]
      */
     public function getAnnonces(): Collection
     {
         return $this->annonces;
     }
 
-    public function addAnnonce(Annonces $annonce): self
+    public function addAnnonce(Annonce $annonce): self
     {
         if (!$this->annonces->contains($annonce)) {
             $this->annonces[] = $annonce;
@@ -162,7 +162,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeAnnonce(Annonces $annonce): self
+    public function removeAnnonce(Annonce $annonce): self
     {
         if ($this->annonces->removeElement($annonce)) {
             // set the owning side to null (unless already changed)

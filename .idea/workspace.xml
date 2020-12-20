@@ -11,9 +11,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ffa5e95-6a76-4b2a-aba5-63f01db66b67" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/petites-annonces.local.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/petites-annonces.local.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Annonces.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Annonce.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/AnnoncesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AnnonceRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,9 +141,15 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/verify-email-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
+      <path value="$PROJECT_DIR$/vendor/antishov/doctrine-extensions-bundle" />
+      <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/vendor/gedmo/doctrine-extensions" />
     </include_path>
   </component>
   <component name="ProjectId" id="1lnflSzo0UsclcBv2X4RCEVYV1D" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -146,6 +161,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -156,7 +173,14 @@
       <option name="presentableId" value="Default" />
       <updated>1607965516181</updated>
       <workItem from="1607965517274" duration="13694000" />
-      <workItem from="1608237928101" duration="3550000" />
+      <workItem from="1608237928101" duration="4593000" />
+      <workItem from="1608302504501" duration="1204000" />
+      <workItem from="1608316024430" duration="597000" />
+      <workItem from="1608323669547" duration="7129000" />
+      <workItem from="1608415215126" duration="1026000" />
+      <workItem from="1608416841771" duration="387000" />
+      <workItem from="1608417274539" duration="588000" />
+      <workItem from="1608470679905" duration="2994000" />
     </task>
     <servers />
   </component>
@@ -176,6 +200,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="371" y="121" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1608416979940">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="371" y="121" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1608416979940" />
+    <state x="325" y="68" width="684" height="446" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608329291863">
+      <screen x="0" y="0" width="3286" height="1080" />
+    </state>
+    <state x="325" y="68" width="684" height="446" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.3286.1080@0.0.3286.1080" timestamp="1608329291863" />
+    <state x="427" y="225" width="502" height="316" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1608327984862">
+      <screen x="0" y="0" width="3286" height="1080" />
+    </state>
+    <state x="427" y="225" width="502" height="316" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.3286.1080@0.0.3286.1080" timestamp="1608327984862" />
     <state x="387" y="104" width="783" height="540" key="find.popup" timestamp="1607986138689">
       <screen x="0" y="0" width="3286" height="1080" />
     </state>

@@ -3,10 +3,38 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+      <!-- Axentix CSS minified version -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.0.0/dist/css/axentix.min.css">
+      <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <header>
+      <nav class="navbar shadow-1 primary">
+        <a href="{{ path('app_home') }}" class="navbar-brand">Axentix</a>
+        <div class="navbar-menu ml-auto">
+          <a class="navbar-link" href="#">Accueil</a>
+          <a class="navbar-link" href="#">Link 2</a>
+          <a class="navbar-link" href="#">Link 3</a>
+          <a class="navbar-link" href="#">Link 4</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Code here the main content -->
+      {% block body %}{% endblock %}
+    </main>
+
+    <footer class="footer primary">
+      Copyright © 2020 - Example
+    </footer>
+
+
+
+        <!-- Axentix JS minified version -->
+        <script src="https://cdn.jsdelivr.net/npm/axentix@1.0.0/dist/js/axentix.min.js"></script>
         {% block javascripts %}{% endblock %}
+    <script src="{{ asset('js/scripts.js') }}"></script>
     </body>
 </html>

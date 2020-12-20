@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnoncesRepository;
+use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
+ * @ORM\Table(name="annonces")
+ * @ORM\Entity(repositoryClass=AnnonceRepository::class)
+ * @UniqueEntity(fields={"title"}, message="Título duplicado, escoja otro por favor")
  */
-class Annonces
+class Annonce
 {
     /**
      * @ORM\Id
@@ -23,6 +27,7 @@ class Annonces
     private $title;
 
     /**
+     * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
@@ -33,6 +38,7 @@ class Annonces
     private $content;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -76,13 +82,6 @@ class Annonces
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
     public function getContent(): ?string
     {
         return $this->content;
@@ -98,13 +97,6 @@ class Annonces
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     public function getActive(): ?bool

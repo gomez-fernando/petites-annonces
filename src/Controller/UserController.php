@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
@@ -63,12 +64,40 @@ class UserController extends AbstractController
       $em->persist($user);
       $em->flush();
 
-      $this->addFlash('message', 'Profile updated successfully');
+      $this->addFlash('success', 'Profile updated successfully');
       return $this->redirectToRoute('user');
     }
 
     return $this->render('user/edit-profile.html.twig', [
         'form' => $form->createView()
     ]);
+  }
+
+  /**
+   * @Route("/user/edit/password", name="user_edit_password")
+   * @param Request $request
+   * @param UserPasswordEncoderInterface $encoder
+   * @return Response
+   */
+  public function userEditPassword(Request $request, UserPasswordEncoderInterface $encoder): Response
+  {
+    if($request->isMethod('POST')){
+      $em = $this->getDoctrine()->getManager();
+
+      $user = $this->getUser();
+
+      if($request->request->get('pass') == $request->request->get('pass2') ){
+          $user->setPassword($encoder->encodePassword($user, $request->request->get('pass')));
+          $em->flush();
+          $this->addFlash('success', 'Password changed!');
+
+          return $this->redirectToRoute('user');
+
+      }else{
+        $this->addFlash('error', 'The passwords are not equal');
+      }
+    }
+
+    return $this->render('user/edit-password.html.twig');
   }
 }

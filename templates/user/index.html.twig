@@ -4,6 +4,23 @@
 
 {% block body %}
 <div class="container grix xs4">
+  {% for message in app.flashes('success') %}
+    <p style="display: none;" id="flash">{{ message }}</p>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        // document.getElementById("temp").addEventListener("click", function() {
+        const text = document.getElementById("flash").innerHTML;
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: text,
+            showConfirmButton: false,
+            timer: 2000
+        })
+        //     return false;
+        // });
+    </script>
+  {% endfor %}
   <div class="col-xs4"><h3>My profile: {{ app.user.name }} {{ app.user.lastname }}</h3></div>
   <div class="col-xs1">Name: </div>
   <div class="col-xs3">{{ app.user.name }}</div>
@@ -13,7 +30,7 @@
   <div class="col-xs3">{{ app.user.email }}</div>
   <div class="col-xs4">
     <a href="{{ path('user_edit_profile') }}" class="btn shadow-1 rounded-1 blue">Change profile</a>
-    <a href="#" class="btn shadow-1 rounded-1 blue">Change password</a>
+    <a href="{{ path('user_edit_password') }}" class="btn shadow-1 rounded-1 blue">Change password</a>
   </div>
 
   <div class="col-xs4"><h3>My announces ({{ app.user.annonces | length }})</h3></div>

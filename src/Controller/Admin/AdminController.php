@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +20,7 @@ class AdminController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('admin/add.html.twig', [
+        return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }

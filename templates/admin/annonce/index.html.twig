@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Announces{% endblock %}
+
+{% block body %}
+<h1>Announces</h1>
+  <div class="responsive-table">
+    <table class="table striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Active</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+    {% for annonce in annonces %}
+      <tr>
+        <td>{{ annonce.id }}</td>
+        <td>{{ annonce.title }}</td>
+        <td>{{ annonce.createdAt | date('M-d-Y') }}</td>
+        <td>
+          <label class="form-switch mt-2">
+{#            No#}
+            <input type="checkbox" {{ (annonce.active == 1) ? 'checked' : '' }} data-id="{{ annonce.id }}">
+            <span class="slider"></span>
+{#            Yes#}
+          </label>
+        </td>
+        <td class="text-center">
+{#          <a href="{{ path('admin_annonces_edit', {'id': annonce.id}) }}" class="btn blue">Edit</a>#}
+          <button class="btn rounded-1 primary press modal-trigger" data-target="modal-delete" data-id="{{ annonce.id }}"
+          data-title="{{ annonce.title }}">Delete announce</button>
+
+        </td>
+      </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+
+{#  MODAL#}
+  <div class="modal shadow-1 white falling" id="modal-delete" data-ax="modal">
+    <div class="modal-header">Delete announce</div>
+
+    <div class="divider"></div>
+
+    <div class="modal-content">
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="modal-footer">
+      <button data-target="modal-delete" class="ml-auto btn shadow-1 rounded-1 small primary modal-trigger">Cancel</button>
+{#      <a href="{{ path('admin_annonces_delete', {'id': annonce.id}) }}">Delete</a>#}
+      <a href="#" class="btn small red">Delete</a>
+    </div>
+  </div>
+{#END MODAL#}
+{% endblock %}
+

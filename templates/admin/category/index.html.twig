@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+<h1>Categories</h1>
+  <a href="{{ path('admin_categories_add') }}" class="btn blue">Add category</a>
+{#{{ dump(categories) }}#}
+  <div class="responsive-table">
+    <table class="table striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Parent</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+    {% for category in categories %}
+      <tr>
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td>{{ category.parent }}</td>
+        <td class="text-center">
+          <a href="{{ path('admin_categories_edit', {'id': category.id}) }}" class="btn blue">Edit</a>
+
+        </td>
+      </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}

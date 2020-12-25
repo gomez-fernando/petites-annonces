@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -60,9 +62,21 @@ class Annonce
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="annonce", orphanRemoval=true)
+     */
+    private $images;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="favorites")
+     */
+    private $favorites;
+
     public function __construct()
     {
       $this->active = false;
+      $this->images = new ArrayCollection();
+      $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,6 +150,60 @@ class Annonce
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getAnnonce() === $this) {
+                $image->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(User $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(User $favorite): self
+    {
+        $this->favorites->removeElement($favorite);
 
         return $this;
     }

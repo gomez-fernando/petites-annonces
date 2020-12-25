@@ -59,9 +59,15 @@ class User implements UserInterface
      */
     private $lastname;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Annonce::class, mappedBy="favorites")
+     */
+    private $favorites;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,6 +210,33 @@ class User implements UserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Annonce $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->addFavorite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Annonce $favorite): self
+    {
+        if ($this->favorites->removeElement($favorite)) {
+            $favorite->removeFavorite($this);
+        }
 
         return $this;
     }

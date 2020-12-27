@@ -112,6 +112,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/webimpress/safe-writer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofsymfony/ckeditor-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/templating" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/imagine/imagine" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/liip/imagine-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

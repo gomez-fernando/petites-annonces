@@ -155,7 +155,7 @@ class Annonce
     }
 
     /**
-     * @return Collection|Image[]
+     * @return ArrayCollection|Image[]
      */
     public function getImages(): Collection
     {

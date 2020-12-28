@@ -20,9 +20,11 @@ class MainController extends AbstractController
      */
     public function index(): Response
     {
+//      dd($this->getUser()->getRoles());
         return $this->render('main/index.html.twig', [
-            'ann' => $this->annonceRepository->findAll(),
-            'annonces' => $this->annonceRepository->findBy(['active' => true], ['createdAt' => 'DESC', 'title' => 'DESC'])
+//            'annonces' => $this->annonceRepository->findBy(['active' => true], ['createdAt' => 'DESC', 'title' => 'DESC'], 1)
+             'annonces' => $this->annonceRepository->findBy(['active' => true], ['createdAt' => 'DESC', 'title' => 'DESC'], )
+
         ]);
     }
 }

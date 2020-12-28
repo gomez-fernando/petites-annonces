@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="container">
+            <div class="card shadow-1 fx-row">
+                <div class="primary d-flex vcenter fx-center px-4" style="width: 300px; height: 300px">
+                        <div class="caroulix" id="example-caroulix" data-ax="caroulix" data-ax-caroulix-autoplay-enabled="true" data-caroulix-indicators-enabled="true">
+                            <div class="caroulix-arrow caroulix-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="caroulix-arrow caroulix-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+
+                            {% for image in annonce.images %}
+                            <div class="caroulix-item">
+
+                            <img width="300px" height="300px" src="{{ asset('uploads/images/annonces/' ~ image.name ) }}" alt="{{ image.name }}" />
+                            </div>
+
+                            {% endfor %}
+
+
+                        </div>
+{#                    <img width="300" height="300" src="{{ asset('uploads/images/annonces/' ~ annonce.images[0].name ) }}" alt="">#}
+
+                </div>
+                <div class="flex fx-col fx-grow">
+                    <div class="card-header">{{ annonce.title }}</div>
+                    <div class="card-content">
+                        <p>
+                            Category: {{ annonce.category.name }}
+                        </p>
+                        <p>
+                            {{ annonce.content | raw}}
+                            {#              {{ annonce.content | striptags }}#}
+                            {#              {{ annonce.content  }}#}
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script>
+        let caroulix = new Axentix.Caroulix('#example-caroulix');
+    </script>
+{% endblock %}

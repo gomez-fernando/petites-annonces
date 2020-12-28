@@ -14,15 +14,39 @@
 {#          {{ dump(ann) }}#}
         </div>
         <div class="flex fx-col fx-grow">
-          <div class="card-header">{{ annonce.title }}</div>
+          <div class="card-header"><a href="{{ path('annonces_details', {slug: annonce.slug}) }}">{{ annonce.title }}</a></div>
           <div class="card-content">
             <p>
               Category: {{ annonce.category.name }}
             </p>
             <p>
               {{ annonce.content | raw}}
-{#              {{ annonce.content | striptags }}#}
-{#              {{ annonce.content  }}#}
+
+              <div>
+              {% if is_granted("ROLE_USER") %}
+
+                {% for favorite in annonce.favorites %}
+                  {% if favorite.id == app.user.id %}
+                    <a href="{{ path('annonces_remove_favorite', {id: annonce.id}) }}"><i class="fas fa-heart txt-red"></i></a>
+                    {% else %}
+                      <a href="{{ path('annonces_add_favorite', {id: annonce.id}) }}"><i class="far fa-heart txt-red"></i></a>
+                  {% endif %}
+
+                  {% else %}
+                    <a href="{{ path('annonces_add_favorite', {id: annonce.id}) }}"><i class="far fa-heart txt-red"></i></a>
+
+
+                {% endfor %}
+
+              {% else %}
+                <i class="far fa-heart txt-red"></i>
+
+              {% endif %}
+
+
+            </div>
+
+
             </p>
           </div>
         </div>

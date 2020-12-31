@@ -18,5 +18,5 @@ doctrine:
                 alias: App
         dql:
             string_functions:
-                MATCH_AGAINST: App\Extensions\Doctrine\MatchAgainst.php
+                MATCH_AGAINST: App\Extensions\Doctrine\MatchAgainst
 

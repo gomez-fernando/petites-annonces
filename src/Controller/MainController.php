@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Form\SearchAnnonceType;
 use App\Repository\AnnonceRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,15 +21,28 @@ class MainController extends AbstractController
   {
     $this->annonceRepository = $annonceRepository;
   }
-    /**
-     * @Route("/", name="app_home")
-     */
-    public function index(): Response
+
+  /**
+   * @Route("/", name="app_home")
+   * @param Request $request
+   * @return Response
+   */
+    public function index(Request $request): Response
     {
 //      dd($this->getUser()->getRoles());
+        $annonces = $this->annonceRepository->findBy(['active' => true], ['createdAt' => 'DESC', 'title' => 'DESC'], 5);
+
+        $form = $this->createForm(SearchAnnonceType::class);
+        $search = $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+          $annonces = $this->annonceRepository->search($search->get('words')->getData());
+        }
+
         return $this->render('main/index.html.twig', [
-//            'annonces' => $this->annonceRepository->findBy(['active' => true], ['createdAt' => 'DESC', 'title' => 'DESC'], 1)
-             'annonces' => $this->annonceRepository->findBy(['active' => true], ['createdAt' => 'DESC', 'title' => 'DESC'], )
+//            'annonces' => $this->annonceRepository->findBy(['active' => true], ['createdAt' => 'DESC', 'title' => 'DESC'])
+             'annonces' => $annonces,
+            'form' => $form->createView()
 
         ]);
     }
@@ -37,6 +52,7 @@ class MainController extends AbstractController
    * @param Request $request
    * @param MailerInterface $mailer
    * @return Response
+   * @throws TransportExceptionInterface
    */
   public function contact(Request $request, MailerInterface $mailer): Response
   {

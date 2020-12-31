@@ -4,6 +4,17 @@
 
 {% block body %}
   <div class="container">
+
+    {{ form_start(form) }}
+    {#        <div class="modal-content">#}
+    {{ form_widget(form) }}
+
+    <div class="divider"></div>
+
+    <button class="btn small primary">Search</button>
+    {{ form_end(form) }}
+
+
     {% for annonce in annonces %}
       <div class="card shadow-1 fx-row">
         <div class="primary d-flex vcenter fx-center px-4">

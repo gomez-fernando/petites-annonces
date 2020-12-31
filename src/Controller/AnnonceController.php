@@ -3,12 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
+use App\Form\AnnonceContactType;
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -27,20 +31,46 @@ class AnnonceController extends AbstractController
     $this->em = $em;
     $this->annonceRepository = $annonceRepository;
   }
-    /**
-     * @Route("/details/{slug}", name="details")
-     */
-    public function details($slug): Response
+
+  /**
+   * @Route("/details/{slug}", name="details")
+   * @param Request $request
+   * @param $slug
+   * @param MailerInterface $mailer
+   * @return Response
+   */
+    public function details(Request $request, $slug, MailerInterface $mailer): Response
     {
       $annonce = $this->annonceRepository->findOneBy(['slug' => $slug]);
 
       if(!$annonce){
         throw new NotFoundHttpException("This announce doesn't exist");
       }
-//dd($annonce);
-        return $this->render('annonce/details.html.twig',[
-            'annonce' => $annonce
-        ]);
+
+      $form = $this->createForm(AnnonceContactType::class );
+      $contact = $form->handleRequest($request);
+
+      if($form->isSubmitted() && $form->isValid()){
+        $email = (new TemplatedEmail())
+            ->from($contact->get('email')->getData())
+            ->to($annonce->getUser()->getEmail())
+            ->subject('This is a contact about your announce: "' . $annonce->getTitle() . '".')
+            ->htmlTemplate('emails/contact_annonce.html.twig')
+            ->context([
+                'annonce' => $annonce,
+              'e_email' => $contact->get('email')->getData(),
+              'message' => $contact->get('message')->getData()
+            ]);
+        $mailer->send($email);
+
+        $this->addFlash('success', 'Your email has been sent');
+        return $this->redirectToRoute('annonces_details', ['slug' => $annonce->getSlug() ]);
+      }
+
+      return $this->render('annonce/details.html.twig',[
+          'annonce' => $annonce,
+        'form' => $form->createView()
+      ]);
     }
 
   /**

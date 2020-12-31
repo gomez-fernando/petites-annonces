@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}{{ annonce.title }}{% endblock %}
 
 {% block body %}
     <div class="container">
+      {% for message in app.flashes('success') %}
+        <div class="p-3 my-2 rounded success">{{ message }}</div>
+      {% endfor %}
             <div class="card shadow-1 fx-row">
                 <div class="primary d-flex vcenter fx-center px-4" style="width: 300px; height: 300px">
                         <div class="caroulix" id="example-caroulix" data-ax="caroulix" data-ax-caroulix-autoplay-enabled="true" data-caroulix-indicators-enabled="true">
@@ -38,15 +41,45 @@
                             {#              {{ annonce.content | striptags }}#}
                             {#              {{ annonce.content  }}#}
                         </p>
+                        <p>
+                            <button class="btn rounded-1 primary press modal-trigger" data-target="modal-contact">Contact the seller</button>
+                        </p>
                     </div>
                 </div>
             </div>
     </div>
+
+{#    MODAL#}
+    <div class="modal shadow-1 white falling" id="modal-contact" data-ax="modal">
+        <div class="modal-header">Contact the seller</div>
+
+        <div class="divider"></div>
+        {{ form_start(form) }}
+{#        <div class="modal-content">#}
+        <div class="">
+        {{ form_widget(form.title) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.message) }}
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="modal-footer">
+            <button data-target="modal-contact" class="ml-auto btn shadow-1 rounded-1 small secondary modal-trigger">Close</button>
+            <button class="btn small primary">Send message</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{#    END MODAL#}
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
     <script>
+        window.onload = function(){
+            document.querySelector('#annonce_contact_title').value= "{{ annonce.title }}"
+        }
         let caroulix = new Axentix.Caroulix('#example-caroulix');
+        let modal = new Axentix.Modal('#modal-contact');
     </script>
 {% endblock %}

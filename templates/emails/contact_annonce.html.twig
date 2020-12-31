@@ -1,0 +1,12 @@
+<h1>Contact about your announce: "{{ annonce.title }}"</h1>
+
+<p>From: {{ e_email }}</p>
+
+{#<p>#}
+{#  Subject: <br>#}
+{#{{ subject }}#}
+{#</p>#}
+
+<p>Message: <br>
+  {{ message | raw }}
+</p>

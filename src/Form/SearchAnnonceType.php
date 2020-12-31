@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,7 +19,17 @@ class SearchAnnonceType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Enter one or many key words'
-                ]
+                ],
+                'required' => false
+            ])
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Select a category'
+                ],
+                'required' => false
             ])
         ;
     }

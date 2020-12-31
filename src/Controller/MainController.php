@@ -36,7 +36,10 @@ class MainController extends AbstractController
         $search = $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-          $annonces = $this->annonceRepository->search($search->get('words')->getData());
+          $annonces = $this->annonceRepository->search(
+              $search->get('words')->getData(),
+              $search->get('category')->getData(),
+          );
         }
 
         return $this->render('main/index.html.twig', [

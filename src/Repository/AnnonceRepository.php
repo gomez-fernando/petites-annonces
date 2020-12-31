@@ -22,7 +22,7 @@ class AnnonceRepository extends ServiceEntityRepository
   /**
    *
    */
-    public function search($words)
+    public function search($words = null, $category = null)
     {
       $query = $this->createQueryBuilder('a');
       $query->where('a.active = 1');
@@ -30,6 +30,12 @@ class AnnonceRepository extends ServiceEntityRepository
       if($words != null){
         $query->andWhere('MATCH_AGAINST(a.title, a.content) AGAINST (:words boolean)>0')
           ->setParameter('words', $words);
+      }
+
+      if($category != null){
+        $query->leftJoin('a.category', 'c');
+        $query->andWhere('c.id = :id')
+          ->setParameter('id', $category);
       }
 
       return $query->getQuery()->getResult();

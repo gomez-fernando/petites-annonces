@@ -12,7 +12,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Table(name="annonces")
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
- * @UniqueEntity(fields={"title"}, message="Título duplicado, escoja otro por favor")
+ * @UniqueEntity(fields={"title"}, message="Title is duplicated, please insert another.")
+ * @ORM\Table(name="annonces", indexes={@ORM\Index(columns={"title", "content"}, flags={"fulltext"})})
  */
 class Annonce
 {

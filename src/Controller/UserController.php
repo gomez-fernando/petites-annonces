@@ -6,6 +6,8 @@ use App\Entity\Annonce;
 use App\Form\AnnonceType;
 use App\Form\RegistrationFormType;
 use App\Form\SelfEditUserType;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -119,7 +121,41 @@ class UserController extends AbstractController
    */
   public function userDataDownload(): Response
   {
-    return $this->render('user/data.html.twig');
+    // define the pdf options
+    $pdfOptions = new Options();
+
+    // default police
+    $pdfOptions->set('defaultFont', 'Arial');
+    $pdfOptions->setIsRemoteEnabled(true);
+
+    // instance dompdf
+    $dompdf = new Dompdf($pdfOptions);
+    $context = stream_context_create([
+        'ssl' => [
+            'verify_peer' => FALSE,
+            'verify_peer_name' => FALSE,
+            'verify_self_signed' => FALSE
+        ]
+    ]);
+
+    $dompdf->setHttpContext($context);
+
+    // generate HTML
+    $html = $this->renderView('user/download.html.twig');
+
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+
+    // generate a file name
+    $file = 'user-data-' . $this->getUser()->getName() . '-' . $this->getUser()->getLastname() . '.pdf';
+
+    // send pdf to browser
+    $dompdf->stream($file, [
+        'Attachment' => true
+    ]);
+
+    return new Response();
   }
 
 //  /**

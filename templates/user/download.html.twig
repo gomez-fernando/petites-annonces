@@ -1,0 +1,58 @@
+{% extends "base-pdf.html.twig" %}
+
+{% block title %}
+ User's Personal Data
+{% endblock %}
+
+{% block body %}
+    <h1>User: {{ app.user.lastname }} {{ app.user.name }}</h1>
+    <h2>Personal data</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th scope="col">Last name</th>
+            <th scope="col">First name</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ app.user.lastname }}</td>
+            <td>{{ app.user.name }}</td>
+            <td>{{ app.user.email }}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+    <h2>Your announces</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for annonce in app.user.annonces %}
+            <tr>
+                <td>{{ annonce.title }}</td>
+                <td>{{ annonce.content | raw }}</td>
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+    <h2>Your images</h2>
+    {% for annonce in app.user.annonces %}
+        <h3>{{ annonce.title }}</h3>
+        {% for image in annonce.images %}
+            <a href="{{ absolute_url(asset('uploads/images/annonces/' ~ image.name)) }}" target="_blank">{{ absolute_url(asset('uploads/images/annonces/' ~ image.name)) }}</a>
+        {% endfor  %}
+    {% endfor %}
+
+
+{% endblock %}

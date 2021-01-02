@@ -12,10 +12,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @Route("/user", name="user_")
+ * Class UserController
+ * @package App\Controller
+ */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/", name="")
      */
     public function index(): Response
     {
@@ -23,7 +28,7 @@ class UserController extends AbstractController
     }
 
   /**
-   * @Route("/user/announce/add", name="user_add_annonce")
+   * @Route("/announce/add", name="add_annonce")
    */
   public function addAnnonce(Request $request): Response
   {
@@ -49,7 +54,7 @@ class UserController extends AbstractController
 
 
   /**
-   * @Route("/user/edit/profile", name="user_edit_profile")
+   * @Route("/edit/profile", name="edit_profile")
    */
   public function userEditProfile(Request $request): Response
   {
@@ -74,7 +79,7 @@ class UserController extends AbstractController
   }
 
   /**
-   * @Route("/user/edit/password", name="user_edit_password")
+   * @Route("/edit/password", name="edit_password")
    * @param Request $request
    * @param UserPasswordEncoderInterface $encoder
    * @return Response
@@ -100,4 +105,45 @@ class UserController extends AbstractController
 
     return $this->render('user/edit-password.html.twig');
   }
+
+  /**
+   * @Route("/data", name="data")
+   */
+  public function userData(): Response
+  {
+    return $this->render('user/data.html.twig');
+  }
+
+  /**
+   * @Route("/data/download", name="data_download")
+   */
+  public function userDataDownload(): Response
+  {
+    return $this->render('user/data.html.twig');
+  }
+
+//  /**
+//   * @Route("/supprime/image/{id}", name="annonces_delete_image", methods={"DELETE"})
+//   */
+//  public function deleteImage(Images $image, Request $request){
+//    $data = json_decode($request->getContent(), true);
+//
+//    // On vérifie si le token est valide
+//    if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
+//      // On récupère le nom de l'image
+//      $nom = $image->getName();
+//      // On supprime le fichier
+//      unlink($this->getParameter('images_directory').'/'.$nom);
+//
+//      // On supprime l'entrée de la base
+//      $em = $this->getDoctrine()->getManager();
+//      $em->remove($image);
+//      $em->flush();
+//
+//      // On répond en json
+//      return new JsonResponse(['success' => 1]);
+//    }else{
+//      return new JsonResponse(['error' => 'Token Invalide'], 400);
+//    }
+//  }
 }

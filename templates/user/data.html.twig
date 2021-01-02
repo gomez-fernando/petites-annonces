@@ -1,6 +1,6 @@
 {% extends 'user.html.twig' %}
 
-{% block title %}My profile{% endblock %}
+{% block title %}Personal information{% endblock %}
 
 {% block body %}
 <div class="container grix xs4">
@@ -21,24 +21,33 @@
         // });
     </script>
   {% endfor %}
-  <div class="col-xs4"><h3>My profile: {{ app.user.name }} {{ app.user.lastname }}</h3></div>
+  <div class="col-xs4">
+      <h3>Personal information: {{ app.user.name }} {{ app.user.lastname }}</h3>
+      <a href="{{ path('user_data_download') }}" class="btn blue">Download personal data</a>
+  </div>
   <div class="col-xs1">Name: </div>
   <div class="col-xs3">{{ app.user.name }}</div>
   <div class="col-xs1">Lastname: </div>
   <div class="col-xs3">{{ app.user.lastname }}</div>
   <div class="col-xs1">Email: </div>
   <div class="col-xs3">{{ app.user.email }}</div>
-  <div class="col-xs4">
-    <a href="{{ path('user_edit_profile') }}" class="btn shadow-1 rounded-1 blue">Change profile</a>
-    <a href="{{ path('user_edit_password') }}" class="btn shadow-1 rounded-1 blue">Change password</a>
-    <a href="{{ path('user_data') }}" class="btn shadow-1 rounded-1 blue">See my personal data (RGPD)</a>
-  </div>
 
   <div class="col-xs4"><h3>My announces ({{ app.user.annonces | length }})</h3></div>
-  {% for annonce in app.user.annonces %}
-    <div class="col-xs1">Title: </div>
-    <div class="col-xs3">{{ annonce.title }}</div>
-  {% endfor%}
+    {% for annonce in app.user.annonces %}
+        <div class="col-xs1">Title: </div>
+        <div class="col-xs3">{{ annonce.title }}</div>
+        <div class="col-xs1">Content: </div>
+        <div class="col-xs3">{{ annonce.content  | raw }}</div>
+        <div class="col-xs4">
+            {% for image in annonce.images %}
+                <div>
+                    <img width="200" height="200" src="{{ asset('uploads/images/annonces/' ~ image.name) }}" alt="{{ annonce.title }}">
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+
+    {% endfor%}
 
 
 </div>

@@ -29,6 +29,8 @@ class MainController extends AbstractController
    */
     public function index(Request $request): Response
     {
+      $annonces = $this->annonceRepository->selectInterval("2020-12-20", "2020-12-28", 1);
+//      dd($annonces);
 //      dd($this->getUser()->getRoles());
         $annonces = $this->annonceRepository->findBy(['active' => true], ['createdAt' => 'DESC', 'title' => 'DESC'], 5);
 

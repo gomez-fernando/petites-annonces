@@ -32,6 +32,33 @@ class AnnonceController extends AbstractController
     $this->annonceRepository = $annonceRepository;
   }
 
+//  PAGINACION
+  /**
+   * @Route("/", name="list")
+   * @param Request $request
+   */
+  public function index(Request $request)
+  {
+    $annonces = $this->annonceRepository->findAll();
+    // se puede poner por defecto 1 si no hay valor para page
+    // /announces/?page=123
+    // definimos el número de elementos por página
+    $limit = 1;
+    // obtenemos el número de página
+    $page = (int) $request->query->get('page', 1);
+
+    // obtenemos los anuncios de la página
+    $annonces = $this->annonceRepository->getPaginatedAnnounces($page, $limit);
+//    dd($page);
+
+    // obtenemos la cantidad total de anuncios
+    $total = $this->annonceRepository->getTotalAnnounces();
+//    dd($total);
+    return $this->render('annonce/index.html.twig', compact(
+        'annonces', 'total' , 'limit', 'page'
+    ));
+  }
+
   /**
    * @Route("/details/{slug}", name="details")
    * @param Request $request

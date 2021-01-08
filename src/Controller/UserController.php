@@ -46,7 +46,7 @@ class UserController extends AbstractController
       $em->persist($annonce);
       $em->flush();
 
-      return $this->redirectToRoute('user');
+      return $this->redirectToRoute('user_add_annonce');
     }
 
     return $this->render('user/annonces/add.html.twig', [
